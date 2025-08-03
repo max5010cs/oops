@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Use of MD5",
+    "pattern": "(?i)md5\\s*\\(",
+    "risk": "High",
+    "category": "Known Patterns",
+    "description": "MD5 is a broken hashing algorithm and should not be used for security-sensitive operations.",
+    "reference": "https://cwe.mitre.org/data/definitions/328.html"
+  },
+  {
+    "name": "Use of SHA1",
+    "pattern": "(?i)sha1\\s*\\(",
+    "risk": "High",
+    "category": "Known Patterns",
+    "description": "SHA1 is deprecated due to known collision attacks. Use SHA-256 or higher.",
+    "reference": "https://cwe.mitre.org/data/definitions/328.html"
+  },
+  {
+    "name": "JWT None Algorithm",
+    "pattern": "\"alg\"\\s*:\\s*\"none\"",
+    "risk": "Critical",
+    "category": "Known Patterns",
+    "description": "JWTs using the `none` algorithm allow signature bypass, leading to authentication bypass.",
+    "reference": "https://cwe.mitre.org/data/definitions/345.html"
+  },
+  {
+    "name": "SQL Injection via String Concatenation",
+    "pattern": "(SELECT|INSERT|UPDATE|DELETE).*['\"\\`]\\s*\\+\\s*.*\\+\\s*['\"\\`]",
+    "risk": "Critical",
+    "category": "Known Patterns",
+    "description": "String-concatenated SQL is vulnerable to injection. Always use parameterized queries.",
+    "reference": "https://owasp.org/www-community/attacks/SQL_Injection"
+  },
+  {
+    "name": "Insecure Python Pickle Deserialization",
+    "pattern": "pickle\\.loads\\s*\\(",
+    "risk": "Critical",
+    "category": "Known Patterns",
+    "description": "Untrusted `pickle.loads()` can execute arbitrary code. Avoid or strictly validate input.",
+    "reference": "https://cwe.mitre.org/data/definitions/502.html"
+  },
+  {
+    "name": "Insecure PHP Unserialize",
+    "pattern": "unserialize\\s*\\(",
+    "risk": "Critical",
+    "category": "Known Patterns",
+    "description": "PHP unserialize is dangerous if user-controllable. Use JSON or validated formats instead.",
+    "reference": "https://owasp.org/www-community/vulnerabilities/PHP_Object_Injection"
+  },
+  {
+    "name": "ReDoS Vulnerable Regex",
+    "pattern": "\\(a\\+\\)\\+|\\(\\w\\+\\)\\+",
+    "risk": "High",
+    "category": "Known Patterns",
+    "description": "This regex pattern can cause catastrophic backtracking (ReDoS). Avoid nested quantifiers.",
+    "reference": "https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS"
+  },
+  {
+    "name": "Logging Full Request/Response in Prod",
+    "pattern": "(?i)log\\s*\\(.*(request|response)\\..*\\)",
+    "risk": "High",
+    "category": "Known Patterns",
+    "description": "Logging full request or response bodies may leak sensitive data in production.",
+    "reference": "https://owasp.org/Top10/A01_2021-Broken_Access_Control/"
+  },
+  {
+    "name": "Unsanitized Input in Templates",
+    "pattern": "\\{\\{\\s*.*user_input.*\\s*\\}\\}",
+    "risk": "High",
+    "category": "Known Patterns",
+    "description": "Using unsanitized input in templates can lead to XSS. Escape output properly.",
+    "reference": "https://owasp.org/www-community/attacks/xss/"
+  },
+  {
+    "name": "Writing to Publicly Accessible Files",
+    "pattern": "(open|fs\\.writeFile)\\s*\\(.*(public|www|static).*(\\.log|\\.txt|\\.json)",
+    "risk": "High",
+    "category": "Known Patterns",
+    "description": "Sensitive logs written to public directories may be exposed to anyone with access.",
+    "reference": "https://owasp.org/www-project-top-ten/2017/A3_2017-Sensitive_Data_Exposure"
+  },
+  {
+    "name": "Hardcoded Cryptographic Key",
+    "pattern": "(?i)(secret|key|token|auth)[\\s:=]+[\\\"'][A-Za-z0-9+/=]{16,}[\\\"']",
+    "risk": "Critical",
+    "category": "Known Patterns",
+    "description": "Hardcoded secrets or keys should be avoided. Use environment-level configuration instead.",
+    "reference": "https://cwe.mitre.org/data/definitions/798.html"
+  }
+]

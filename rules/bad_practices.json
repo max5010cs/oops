@@ -1,0 +1,82 @@
+[
+  {
+    "name": "TODO or FIXME Comments in Code",
+    "pattern": "(?i)\\b(TODO|FIXME)\\b",
+    "risk": "Low",
+    "category": "Bad Practices",
+    "description": "Leaving TODO or FIXME comments in code may indicate incomplete or risky implementations.",
+    "reference": "https://www.codewithjason.com/todo-comments-are-code-smells/"
+  },
+  {
+    "name": "Active Test Endpoints",
+    "pattern": "(?i)/test(endpoint|api)?",
+    "risk": "Medium",
+    "category": "Bad Practices",
+    "description": "Test or debug routes left accessible in production may reveal sensitive logic.",
+    "reference": "https://owasp.org/www-project-api-security/"
+  },
+  {
+    "name": "Default or Sample Credentials",
+    "pattern": "(?i)(admin|root|user):(admin|123456|password)",
+    "risk": "High",
+    "category": "Bad Practices",
+    "description": "Default or sample credentials can be easily exploited by attackers.",
+    "reference": "https://owasp.org/www-community/Using_default_credentials"
+  },
+  {
+    "name": "Leaked Database Schema or Metadata",
+    "pattern": "\\bCREATE\\s+TABLE\\b|\\bINFORMATION_SCHEMA\\b",
+    "risk": "Medium",
+    "category": "Bad Practices",
+    "description": "Leaking schema definitions or internal DB metadata can assist attackers.",
+    "reference": "https://owasp.org/www-community/attacks/SQL_Injection"
+  },
+  {
+    "name": "Debug or Test Script Committed",
+    "pattern": "(debug|test)\\.(js|py|sh|rb)",
+    "risk": "Low",
+    "category": "Bad Practices",
+    "description": "Debug/test files in repo may contain sensitive data or access points.",
+    "reference": "https://12factor.net/codebase"
+  },
+  {
+    "name": "Committing Binary or Backup Files",
+    "pattern": "\\.(log|sqlite3|db|bak)$",
+    "risk": "Low",
+    "category": "Bad Practices",
+    "description": "Binary or backup files should not be version-controlled. They may contain sensitive data.",
+    "reference": "https://git-scm.com/docs/gitignore"
+  },
+  {
+    "name": "Logging Secrets or Passwords",
+    "pattern": "(?i)log.*(password|secret|token)",
+    "risk": "High",
+    "category": "Bad Practices",
+    "description": "Logging sensitive data like passwords or tokens can lead to severe breaches.",
+    "reference": "https://owasp.org/www-project-top-ten/2017/A3_2017-Sensitive_Data_Exposure"
+  },
+  {
+    "name": "Fake Tokens in Code",
+    "pattern": "(?i)Bearer\\s+faketoken",
+    "risk": "Medium",
+    "category": "Bad Practices",
+    "description": "Even placeholder tokens can accidentally be used or mistaken for real ones.",
+    "reference": "https://security.stackexchange.com/questions/126819/is-it-safe-to-use-bearer-tokens-in-examples"
+  },
+  {
+    "name": "Hardcoded IPs or Localhost in Public Code",
+    "pattern": "\\b(127\\.0\\.0\\.1|localhost|0\\.0\\.0\\.0)\\b",
+    "risk": "Low",
+    "category": "Bad Practices",
+    "description": "Using localhost or hardcoded IPs may hinder deployment or cause accidental exposure.",
+    "reference": "https://12factor.net/config"
+  },
+  {
+    "name": "Version Control Conflict Markers",
+    "pattern": "<<<<<<<|=======|>>>>>>>",
+    "risk": "Medium",
+    "category": "Bad Practices",
+    "description": "Merge conflict markers committed by accident can break code or expose unresolved issues.",
+    "reference": "https://www.git-scm.com/docs/git-merge"
+  }
+]

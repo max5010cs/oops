@@ -1,0 +1,50 @@
+[
+  {
+    "name": "World Writable Files or Folders (777)",
+    "pattern": "(?i)chmod\\s+777",
+    "risk": "High",
+    "category": "Permissions",
+    "description": "Setting file or directory permissions to 777 allows any user full access. This is a serious security risk.",
+    "reference": "https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration"
+  },
+  {
+    "name": "S3 Bucket with Public Read Access",
+    "pattern": "\"ACL\"\\s*:\\s*\"public-read\"",
+    "risk": "Critical",
+    "category": "Permissions",
+    "description": "S3 buckets with public-read ACL can expose sensitive data to anyone with the URL.",
+    "reference": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-overview.html"
+  },
+  {
+    "name": "Weak JWT Secret",
+    "pattern": "(?i)secret\\s*[=:]\\s*[\"']123[\"']",
+    "risk": "Critical",
+    "category": "Permissions",
+    "description": "Using trivial secrets like '123' for JWT signing allows easy forgery of tokens.",
+    "reference": "https://owasp.org/www-community/vulnerabilities/Weak_JWT_Secrets"
+  },
+  {
+    "name": "Hardcoded OAuth Secret in Frontend",
+    "pattern": "(?i)(client_secret|oauth_secret)\\s*[=:]\\s*[\"'][A-Za-z0-9\\-_]{8,}[\"']",
+    "risk": "High",
+    "category": "Permissions",
+    "description": "OAuth secrets should never be exposed in frontend code. Use server-side storage instead.",
+    "reference": "https://developers.google.com/identity/protocols/oauth2"
+  },
+  {
+    "name": "Exposed Internal Port in Frontend Code",
+    "pattern": "127\\.0\\.0\\.1:(5000|3000|8000|8080|9000)",
+    "risk": "Medium",
+    "category": "Permissions",
+    "description": "Hardcoding internal ports in client code could leak internal service exposure risks.",
+    "reference": "https://owasp.org/www-community/attacks/Information_exposure_through_query_strings_in_url"
+  },
+  {
+    "name": "Sensitive Certificate Files in Repos",
+    "pattern": "\\.(pem|crt|p12|jks)(\\\"|\\'|$)",
+    "risk": "Critical",
+    "category": "Permissions",
+    "description": "Private key or certificate files should never be committed to public repositories.",
+    "reference": "https://cwe.mitre.org/data/definitions/798.html"
+  }
+]

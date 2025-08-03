@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Flask Debug Mode Enabled",
+    "pattern": "debug\\s*=\\s*True",
+    "risk": "High",
+    "category": "Misconfigurations",
+    "description": "Flask debug mode exposes an interactive debugger and should never be enabled in production.",
+    "reference": "https://flask.palletsprojects.com/en/latest/quickstart/#debug-mode"
+  },
+  {
+    "name": "Django Debug Mode Enabled",
+    "pattern": "DEBUG\\s*=\\s*True",
+    "risk": "High",
+    "category": "Misconfigurations",
+    "description": "Django's debug mode exposes sensitive error messages. Disable it in production.",
+    "reference": "https://docs.djangoproject.com/en/stable/ref/settings/#debug"
+  },
+  {
+    "name": "Django ALLOWED_HOSTS Wildcard",
+    "pattern": "ALLOWED_HOSTS\\s*=\\s*\\[\\s*['\"]\\*['\"]\\s*\\]",
+    "risk": "High",
+    "category": "Misconfigurations",
+    "description": "Wildcard ALLOWED_HOSTS disables host header validation and can expose the app to host header attacks.",
+    "reference": "https://docs.djangoproject.com/en/stable/ref/settings/#allowed-hosts"
+  },
+  {
+    "name": "Wildcard CORS Policy",
+    "pattern": "Access-Control-Allow-Origin:\\s*\\*",
+    "risk": "Medium",
+    "category": "Misconfigurations",
+    "description": "Allowing all origins via CORS can leak data or APIs to unauthorized clients.",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS"
+  },
+  {
+    "name": "Verbose Logging of Headers or Tokens",
+    "pattern": "(?i)log\\s*\\(.*(Authorization|Set-Cookie|X-API-KEY|token).*\\)",
+    "risk": "High",
+    "category": "Misconfigurations",
+    "description": "Sensitive headers or tokens should not be printed or logged.",
+    "reference": "https://owasp.org/www-project-top-ten/2017/A3_2017-Sensitive_Data_Exposure"
+  },
+  {
+    "name": "HTTP Used Instead of HTTPS",
+    "pattern": "http:\\/\\/",
+    "risk": "Medium",
+    "category": "Misconfigurations",
+    "description": "Unencrypted HTTP connections risk MITM attacks and should be avoided in production.",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/Security/HTTP_strict_transport_security"
+  },
+  {
+    "name": "Exception Traceback Leaks",
+    "pattern": "(?i)(Traceback \\(most recent call last\\)|Exception in thread|Error: .* at line)",
+    "risk": "Medium",
+    "category": "Misconfigurations",
+    "description": "Detailed tracebacks in responses can leak internal file paths, logic, or sensitive data.",
+    "reference": "https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration"
+  },
+  {
+    "name": "Node.js Express App Running in Dev Mode",
+    "pattern": "process\\.env\\.NODE_ENV\\s*!==\\s*['\"]production['\"]",
+    "risk": "High",
+    "category": "Misconfigurations",
+    "description": "Express in development mode may have insecure defaults and verbose error output.",
+    "reference": "https://expressjs.com/en/advanced/best-practice-performance.html"
+  },
+  {
+    "name": "Missing CSP Header",
+    "pattern": "(?i)Content-Security-Policy",
+    "risk": "Medium",
+    "category": "Misconfigurations",
+    "description": "Missing or weak CSP headers can leave the app vulnerable to XSS.",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP"
+  }
+]
