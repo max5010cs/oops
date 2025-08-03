@@ -5,8 +5,7 @@ use crate::matchers::{Rule, MatchResult};
 use notify::{Watcher, RecursiveMode, RecommendedWatcher, Config, Event, EventKind};
 use std::sync::mpsc::channel;
 use colored::Colorize;
-use rand::prelude::*; // ✅ includes SliceRandom and rng() in one line
-
+use rand::prelude::*; 
 const ALLOWED_EXTENSIONS: &[&str] = &[
     "rs", "js", "ts", "jsx", "tsx", "html", "css", "py", "sh", "go", "php", "c", "cpp"
 ];
@@ -82,7 +81,7 @@ for rule in rules {
             let start = mat.start();
             let line_number = content[..start].matches('\n').count() + 1;
 
-            // Get the full line containing the match
+            
             let line_start = content[..start].rfind('\n').map_or(0, |pos| pos + 1);
             let line_end = content[start..].find('\n').map_or(content.len(), |pos| start + pos);
             let line_content = &content[line_start..line_end];
@@ -107,7 +106,7 @@ pub fn start_watch(path: &Path, rules: &[Rule], ignore_list: &[&str]) {
         .watch(path, RecursiveMode::Recursive)
         .expect("Failed to watch path");
 
-    let mut rng = rand::rng(); // ✅ new API
+    let mut rng = rand::rng(); 
 
 
     loop {

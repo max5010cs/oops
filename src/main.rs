@@ -8,7 +8,7 @@ use std::path::Path;
 use crate::rules::load_all_rules;
 use scanner::{scan_dir, start_watch};
 use reporter::{print_intro, print_help, print_about, print_results};
-use colored::Colorize; // ✅ required for .bright_cyan() etc.
+use colored::Colorize; 
 
 
 fn main() {
