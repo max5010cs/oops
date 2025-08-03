@@ -5,10 +5,11 @@ mod rules;
 
 use std::env;
 use std::path::Path;
-use walkdir::WalkDir;
 use crate::rules::load_all_rules;
 use scanner::{scan_dir, start_watch};
-use reporter::{print_intro, print_help, print_about, print_watch_message, report_all};
+use reporter::{print_intro, print_help, print_about, print_results};
+use colored::Colorize; // ✅ required for .bright_cyan() etc.
+
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -40,16 +41,17 @@ fn main() {
         }
     }
 
+    let string_refs: Vec<&str> = ignore_list.iter().map(|s| s.as_str()).collect();
     let rules = load_all_rules();
 
     match command {
         "run" => {
-            let results = scan_dir(Path::new(target_dir), &rules, &ignore_list);
-            report_all(&results);
+            let results = scan_dir(Path::new(target_dir), &rules, &string_refs);
+            print_results(&results);
         }
         "watch" => {
-            print_watch_message();
-            start_watch(Path::new(target_dir), &rules, &ignore_list);
+            println!("{}", "[oops] Live mode enabled. Watching for changes...".bright_cyan());
+            start_watch(Path::new(target_dir), &rules, &string_refs);
         }
         "about" => print_about(),
         "help" => print_help(),

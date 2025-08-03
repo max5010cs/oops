@@ -1,4 +1,3 @@
-// --- reporter.rs ---
 use crate::matchers::MatchResult;
 use colored::*;
 
@@ -64,3 +63,19 @@ pub fn print_intro() {
     );
     println!();
 }
+
+pub fn print_help() {
+    println!("{}", "[oops] Usage:".bright_yellow());
+    println!("  oops run [dir] [--ignore path1 path2 ...]   Run a scan");
+    println!("  oops watch [dir] [--ignore path1 path2 ...] Watch files live");
+    println!("  oops about                                   Show info");
+    println!("  oops help                                    Show this message");
+}
+
+pub fn print_about() {
+    println!("{}", "[oops] About".bright_green().bold());
+    println!("Built by Max Yuldashev in Rust.");
+    println!("Real-time code scanner for catching risky patterns before you commit.");
+    println!("GitHub: https://github.com/yourusername/oops");
+}
+
