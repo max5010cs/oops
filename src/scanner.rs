@@ -76,19 +76,26 @@ pub fn scan_file(file_path: &Path, rules: &[Rule]) -> Vec<MatchResult> {
 
     let mut results = vec![];
 
-    for (i, line) in content.lines().enumerate() {
-        for rule in rules.iter() {
-            if let Some(re) = rule.to_regex() {
-                if re.is_match(line) {
-                    results.push(MatchResult {
-                        rule: rule.clone(),
-                        line_number: i + 1,
-                        line_content: line.to_string(),
-                    });
-                }
-            }
+for rule in rules {
+    if let Some(re) = rule.to_regex() {
+        for mat in re.find_iter(&content) {
+            let start = mat.start();
+            let line_number = content[..start].matches('\n').count() + 1;
+
+            // Get the full line containing the match
+            let line_start = content[..start].rfind('\n').map_or(0, |pos| pos + 1);
+            let line_end = content[start..].find('\n').map_or(content.len(), |pos| start + pos);
+            let line_content = &content[line_start..line_end];
+
+            results.push(MatchResult {
+                rule: rule.clone(),
+                line_number,
+                line_content: line_content.to_string(),
+            });
         }
     }
+}
+
     results
 }
 

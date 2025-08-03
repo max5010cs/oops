@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use regex::Regex;
 use serde::Deserialize;
 
@@ -7,6 +9,8 @@ pub struct Rule {
     pub pattern: String,
     pub description: String,
     pub risk: String,
+    pub category: String,
+    pub reference: String,
 }
 
 #[derive(Debug, Clone)]

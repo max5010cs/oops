@@ -1,7 +1,21 @@
 use crate::matchers::Rule;
-use std::fs;
 
 pub fn load() -> Vec<Rule> {
-    let raw = fs::read_to_string("rules/bad_practices.json").unwrap_or_default();
-    serde_json::from_str(&raw).unwrap_or_default()
+    const RULES_JSON: &str = include_str!("../../rules/bad_practices.json");
+
+    let rules: Vec<Rule> = serde_json::from_str(RULES_JSON).unwrap_or_else(|e| {
+        eprintln!("[oops::bad_practices] ❌ Failed to parse embedded bad_practices.json: {}", e);
+        vec![]
+    });
+
+    if rules.is_empty() {
+        eprintln!("[oops::bad_practices] ⚠️ No rules loaded from embedded bad_practices.json");
+    } else {
+        println!("[oops::bad_practices] ✅ Loaded {} embedded rule(s)", rules.len());
+    }
+
+    rules
 }
+
+
+
