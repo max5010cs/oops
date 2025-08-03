@@ -8,7 +8,7 @@ pub mod reporter;
 pub struct Rule {
     pub name: String,
     pub pattern: String,
-    pub severity: String,
+    pub risk: String,
     pub category: String,
     pub description: String,
     pub reference: String,
@@ -18,7 +18,7 @@ impl Rule {
     pub fn new(
         name: String,
         pattern: String,
-        severity: String,
+        risk: String,
         category: String,
         description: String,
         reference: String,
@@ -26,7 +26,7 @@ impl Rule {
         Rule {
             name,
             pattern,
-            severity,
+            risk,
             category,
             description,
             reference,

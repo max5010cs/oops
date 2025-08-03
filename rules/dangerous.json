@@ -1,0 +1,82 @@
+[
+  {
+    "name": "eval() usage",
+    "pattern": "\\beval\\s*\\(",
+    "risk": "High",
+    "category": "Dangerous",
+    "description": "Use of eval() is dangerous and can lead to code injection vulnerabilities.",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval"
+  },
+  {
+    "name": "exec() usage in Python",
+    "pattern": "\\bexec\\s*\\(",
+    "risk": "High",
+    "category": "Dangerous",
+    "description": "Use of exec() in Python allows arbitrary code execution. Avoid if possible.",
+    "reference": "https://docs.python.org/3/library/functions.html#exec"
+  },
+  {
+    "name": "Function() constructor in JavaScript",
+    "pattern": "\\bFunction\\s*\\(",
+    "risk": "High",
+    "category": "Dangerous",
+    "description": "Creating functions from strings can lead to code injection attacks.",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"
+  },
+  {
+    "name": "os.system() call",
+    "pattern": "os\\.system\\s*\\(",
+    "risk": "Medium",
+    "category": "Dangerous",
+    "description": "Shell commands via os.system() are vulnerable to command injection.",
+    "reference": "https://docs.python.org/3/library/os.html#os.system"
+  },
+  {
+    "name": "subprocess.call() usage",
+    "pattern": "subprocess\\.call\\s*\\(",
+    "risk": "Medium",
+    "category": "Dangerous",
+    "description": "Calling shell commands using subprocess.call() can be unsafe with untrusted input.",
+    "reference": "https://docs.python.org/3/library/subprocess.html#subprocess.call"
+  },
+  {
+    "name": "child_process.exec() in Node.js",
+    "pattern": "child_process\\.exec\\s*\\(",
+    "risk": "High",
+    "category": "Dangerous",
+    "description": "Spawning shells in Node.js can lead to remote code execution if input is not sanitized.",
+    "reference": "https://nodejs.org/api/child_process.html#child_processexeccommand-options-callback"
+  },
+  {
+    "name": "Backtick Shell Execution",
+    "pattern": "`[^`]+`",
+    "risk": "High",
+    "category": "Dangerous",
+    "description": "Shell execution using backticks is risky, especially with user-supplied input.",
+    "reference": "https://owasp.org/www-community/attacks/Command_Injection"
+  },
+  {
+    "name": "Dynamic __import__ usage",
+    "pattern": "__import__\\s*\\(",
+    "risk": "Medium",
+    "category": "Dangerous",
+    "description": "Dynamic importing using __import__() in Python can allow unauthorized module access.",
+    "reference": "https://docs.python.org/3/library/functions.html#__import__"
+  },
+  {
+    "name": "Catastrophic Backtracking Regex",
+    "pattern": "(a+)+",
+    "risk": "Medium",
+    "category": "Dangerous",
+    "description": "This regex may cause catastrophic backtracking. Avoid nested quantifiers with ambiguous patterns.",
+    "reference": "https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS"
+  },
+  {
+    "name": "Shell command injection via format string",
+    "pattern": "\"\\s*\\$\\{.*\\}\\s*\"",
+    "risk": "High",
+    "category": "Dangerous",
+    "description": "Shell string interpolation can lead to command injection if not properly handled.",
+    "reference": "https://www.shellcheck.net/wiki/SC2006"
+  }
+]
