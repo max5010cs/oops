@@ -76,6 +76,6 @@ pub fn print_about() {
     println!("{}", "[oops] About".bright_green().bold());
     println!("Built by Max Yuldashev in Rust.");
     println!("Real-time code scanner for catching risky patterns before you commit.");
-    println!("GitHub: https://github.com/yourusername/oops");
+    println!("GitHub: https://github.com/max5010cs/oops");
 }
 

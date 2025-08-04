@@ -1,13 +1,5 @@
 # oops
 
-  ___                  
- / _ \  ___  _ __  ___ 
-| | | |/ _ \| '_ \/ __|
-| |_| | (_) | |_) \__ \
- \___/ \___/| .__/|___/
-            |_|        
-
-
 > A real-time code security companion for your terminal.  
 > [max5010cs/oops](https://github.com/max5010cs/oops)
 
